@@ -2,9 +2,11 @@ import ImageColors from 'react-native-image-colors';
 
 
 export const getImageColors = async(uri: string) => {
-        const colors = await ImageColors.getColors(uri, {});
-        let primary;
-        let secondary;
+  let primary;
+  let secondary;
+  try {
+    const colors = await ImageColors.getColors(uri, {});
+       
         
         switch (colors.platform) {
             case 'android':
@@ -21,5 +23,9 @@ export const getImageColors = async(uri: string) => {
               throw new Error('Unexpected platform key')
           }
 
-          return[primary,secondary];
+         
+  } catch (error) {
+    console.log(error);
+  }
+  return[primary,secondary];
 }

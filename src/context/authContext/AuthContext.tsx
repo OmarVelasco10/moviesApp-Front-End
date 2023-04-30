@@ -29,29 +29,39 @@ export const AuthProvider = ({ children }: any) => {
 
     const [state, dispatch] = useReducer(authReducer, authInitialState);
   
+
+    const checkToken = async() => {
+
+        try {
+            const token = await AsyncStorage.getItem('token');
+
+            if(!token) return dispatch({type:'notAuthenticated'});
+    
+            const response = await movieApi.get('/auth/renew');
+    
+            if( response.status !== 200) {
+                return dispatch({type: 'notAuthenticated'});
+            }
+            await AsyncStorage.setItem('token', response.data.token);
+    
+            dispatch({
+                type: 'signUp',
+                payload: {
+                    token: response.data.token,
+                    user: response.data.user
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+       
+
+     
+    }
+
     useEffect(() => {
         checkToken();
       }, []);
-
-    const checkToken = async() => {
-        const token = await AsyncStorage.getItem('token');
-
-        if(!token) return dispatch({type:'notAuthenticated'});
-
-        const response = await movieApi.get('/auth/renew');
-
-        if( response.status !== 200) {
-            return dispatch({type: 'notAuthenticated'});
-        }
-
-        dispatch({
-            type: 'signUp',
-            payload: {
-                token: response.data.token,
-                user: response.data.user
-            }
-        });
-    }
 
    
     

@@ -40,9 +40,10 @@ export const Tabs = () => {
       }}
       />
       <Tab.Screen 
-      name="ListReviewsScreen" 
+      name="Reviews" 
       component={ListReviewsScreen} 
       options={{
+        headerShown: true,
         tabBarLabel: 'Reviews',
         tabBarIcon: ( {color}) => <Icon color={color} size={25} name="checkmark-done-outline"/>
       }}

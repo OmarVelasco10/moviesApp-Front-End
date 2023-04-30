@@ -10,10 +10,14 @@ import { LoginScreen } from "./src/screens/LoginScreen";
 import { AuthNavigation } from "./src/navigation/AuthNavigation";
 import { AuthProvider } from "./src/context/authContext/AuthContext";
 import { Navigator } from "./src/navigation/Navigator";
+import { ReviewsProvider } from "./src/context/reviewsContext/ReviewsContext";
 const AppState = ({ children }: any) => {
   return (
     <AuthProvider>
-      <GradientProvider>{children}</GradientProvider>
+      <GradientProvider>
+        <ReviewsProvider>{children}</ReviewsProvider>
+      </GradientProvider>
+      {/* <GradientProvider>{children}</GradientProvider> */}
     </AuthProvider>
   );
 };

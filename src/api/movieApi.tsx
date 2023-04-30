@@ -10,7 +10,8 @@ const movieApi = axios.create({baseURL});
 movieApi.interceptors.request.use(
     async (config)=> {
         const token = await AsyncStorage.getItem('token');
-         console.log(token);
+        config.headers["Content-Type"] = "multipart/form-data"
+        config.data = undefined;
 
         if( token ) {
             config.headers['x-token'] = token;
