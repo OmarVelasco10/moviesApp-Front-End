@@ -1,4 +1,6 @@
 import { createContext, useEffect, useState } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { Review, ReviewsResponse } from "../../interfaces/reviewsInterface";
 import movieApi from "../../api/movieApi";
 
@@ -12,17 +14,29 @@ export const ReviewsContext = createContext({} as ReviewsContextProps);
 
 
 export const ReviewsProvider = ({ children }: any) =>{
+    
     const [reviews, setReviews] = useState<Review[]>([]);
 
     useEffect(() => {
-      loadReviews();
+        loadReviews();
     }, [])
     
 
     const loadReviews = async() => {
-        const response = await movieApi.get<ReviewsResponse>('/reviews');
-        setReviews([...response.data.reviews]);
-        // console.log(response.data.reviews);
+        const token = await AsyncStorage.getItem('token');
+        if(token) {
+            try {
+                const response = await movieApi.get<ReviewsResponse>('/reviews');
+            setReviews([...response.data.reviews]);
+            // console.log(response.data.reviews);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            console.log('else loadReviews', 'reviews');
+        }
+        
+        
     }
 
     const addReview = async(title: string, description: string, qualification: string) => {

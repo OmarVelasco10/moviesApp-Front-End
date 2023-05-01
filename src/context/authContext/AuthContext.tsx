@@ -33,26 +33,40 @@ export const AuthProvider = ({ children }: any) => {
     const checkToken = async() => {
 
         try {
+            // await AsyncStorage.removeItem('token');
+            console.log('ban 1')
             const token = await AsyncStorage.getItem('token');
-
-            if(!token) return dispatch({type:'notAuthenticated'});
-    
+            console.log('ban 2', token)
+            if(token === null) {
+                return dispatch({type:'notAuthenticated'});
+            } else {
+                console.log('else false')
+            }
+            // console.log('ban 3')
             const response = await movieApi.get('/auth/renew');
-    
+            console.log('ban 4')
             if( response.status !== 200) {
                 return dispatch({type: 'notAuthenticated'});
             }
-            await AsyncStorage.setItem('token', response.data.token);
+            console.log(response, 'response obj')
+            await AsyncStorage.setItem('token', response.data?.token);
     
             dispatch({
                 type: 'signUp',
                 payload: {
-                    token: response.data.token,
+                    token: response.data?.token ?? null,
                     user: response.data.user
                 }
             });
-        } catch (error) {
-            console.log(error);
+        } catch (error: any) {
+            console.log(error, 'test msg');
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+              }
+            // throw error;
+
         }
        
 
@@ -60,8 +74,12 @@ export const AuthProvider = ({ children }: any) => {
     }
 
     useEffect(() => {
-        checkToken();
-      }, []);
+        try {
+            checkToken();
+        } catch(error) {
+            console.log(error, 'useEffect Error')
+        }
+    }, []);
 
    
     
@@ -69,6 +87,7 @@ export const AuthProvider = ({ children }: any) => {
 
     const signIn = async( {email, password}: LoginData) => {
         try {
+            console.log({email,password}, 'body');
             const {data: {token, user}} = await movieApi.post<LoginResponse>('/auth/login',{email, password});
             dispatch({
                 type: 'signUp',
