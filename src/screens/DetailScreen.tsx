@@ -43,8 +43,8 @@ export const DetailScreen = ({route, navigation}: Props) => {
             onPress={() => navigation.pop()}
           >
             <Icon
-              name='arrow-back-outline'
-              color="red"
+              name='arrow-back-circle-outline'
+              color="white"
               size={60}
               
             />

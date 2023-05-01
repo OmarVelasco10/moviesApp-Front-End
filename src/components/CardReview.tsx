@@ -11,10 +11,10 @@ interface Props {
 export const CardReview = ({title, description, qualification, username}: Props) => {
   return (
     <View style={styles.container}>
-        <Text>{title}</Text>
-        <Text>{description}</Text>
-        <Text>{qualification}</Text>
-        <Text> -{username}</Text>
+        <Text style={styles.text}>{title}</Text>
+        <Text style={styles.text}>{description}</Text>
+        <Text style={styles.text}>{qualification}</Text>
+        <Text style={styles.text}> -{username}</Text>
     </View>
   )
 }
@@ -22,11 +22,15 @@ export const CardReview = ({title, description, qualification, username}: Props)
 const styles = StyleSheet.create({
     container: {
         borderWidth:1,
-        borderColor: 'red',
+        borderColor: 'white',
         width: 300,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
         marginVertical: 10
+    },
+    text: {
+      fontSize: 15,
+      color: 'white'
     }
 });

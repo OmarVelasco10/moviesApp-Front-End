@@ -10,11 +10,15 @@ export const useForm = <T extends Object>( initState: T ) => {
             [field]: value
         });
     }
+    const onResetForm = () => {
+        setState(initState);
+      };
 
     return {
         ...state,
         form: state,
         onChange,
+        onResetForm
     }
 
 }
