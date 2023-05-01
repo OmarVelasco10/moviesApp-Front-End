@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+
 import { Background } from "../components/Background";
 import { Logo } from "../components/Logo";
 import { loginStyles } from "../theme/loginTheme";
@@ -16,37 +17,36 @@ import { useForm } from "../hooks/useForm";
 import { StackScreenProps } from "@react-navigation/stack";
 import { AuthContext } from "../context/authContext/AuthContext";
 
-interface Props extends StackScreenProps<any, any>{};
+interface Props extends StackScreenProps<any, any> {}
 
-export const LoginScreen = ({navigation}: Props) => {
+export const LoginScreen = ({ navigation }: Props) => {
   const { signIn, errorMessage, removeError } = useContext(AuthContext);
- const { email, password, onChange } = useForm({
-      email: '',
-      password: ''
+  const { email, password, onChange } = useForm({
+    email: "",
+    password: "",
   });
 
   useEffect(() => {
-    if(errorMessage.length === 0) return;
+    if (errorMessage.length === 0) return;
 
-    Alert.alert('Incorrect login',errorMessage,[{
-      text: 'Ok',
-      onPress: removeError
-      }]);
-  }, [errorMessage])
-  
+    Alert.alert("Incorrect login", errorMessage, [
+      {
+        text: "Ok",
+        onPress: removeError,
+      },
+    ]);
+  }, [errorMessage]);
 
   const onLogin = () => {
-    console.log({email, password});
-    signIn({email,password});
+    signIn({ email, password });
     Keyboard.dismiss();
-  }
+  };
   return (
     <>
-      {/* backgorund */}
       <Background />
       <KeyboardAvoidingView
-        style={{flex:1}}
-        behavior={Platform.OS === 'ios' ? 'padding': 'height'}
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <View style={loginStyles.formContainer}>
           <View style={loginStyles.buttonContainer}>
@@ -65,10 +65,9 @@ export const LoginScreen = ({navigation}: Props) => {
               Platform.OS === "ios" && loginStyles.inputFieldIOS,
             ]}
             selectionColor="white"
-            onChangeText={(value) => onChange(value,'email')}
+            onChangeText={(value) => onChange(value, "email")}
             value={email}
             onSubmitEditing={onLogin}
-
             autoCapitalize="none"
             autoCorrect={false}
           />
@@ -83,19 +82,20 @@ export const LoginScreen = ({navigation}: Props) => {
               Platform.OS === "ios" && loginStyles.inputFieldIOS,
             ]}
             selectionColor="white"
-            onChangeText={(value) => onChange(value,'password')}
+            onChangeText={(value) => onChange(value, "password")}
             value={password}
             onSubmitEditing={onLogin}
-
             autoCapitalize="none"
             autoCorrect={false}
           />
 
           {/* Boton login */}
           <View style={loginStyles.buttonContainer}>
-            <TouchableOpacity activeOpacity={0.8}
-             style={loginStyles.button}
-              onPress={ onLogin }>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={loginStyles.button}
+              onPress={onLogin}
+            >
               <Text style={loginStyles.buttonText}>Login</Text>
             </TouchableOpacity>
           </View>
@@ -104,13 +104,11 @@ export const LoginScreen = ({navigation}: Props) => {
           <View style={loginStyles.newUserContainer}>
             <TouchableOpacity
               activeOpacity={0.8}
-              onPress={() => navigation.replace('RegisterScreen')}
+              onPress={() => navigation.replace("RegisterScreen")}
             >
               <Text style={loginStyles.buttonText}>New account </Text>
             </TouchableOpacity>
           </View>
-
-          {/* jeyboard avoid view */}
         </View>
       </KeyboardAvoidingView>
     </>

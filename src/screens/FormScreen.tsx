@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
-import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { AuthContext } from '../context/authContext/AuthContext'
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, { useContext } from 'react';
+import {Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+
+import { AuthContext } from '../context/authContext/AuthContext';
 import { useForm } from '../hooks/useForm';
 import { ReviewsContext } from '../context/reviewsContext/ReviewsContext';
-import { Alert } from 'react-native';
 import { Background } from '../components/Background';
 
 export const FormScreen = () => {
@@ -20,10 +19,7 @@ export const FormScreen = () => {
 
   const onAddReview = () => {
     addReview(title,description,qualification);
-    
-    // console.log({email, password});
-    // addRe({email,password});
-    // Keyboard.dismiss();
+    Keyboard.dismiss();
   }
   return (
     <View style={styles.container}>
