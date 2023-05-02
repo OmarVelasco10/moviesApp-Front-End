@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
+import { FlatList, RefreshControl, StyleSheet, View } from "react-native";
 
 import { ReviewsContext } from "../context/reviewsContext/ReviewsContext";
 import { CardReview } from "../components/CardReview";

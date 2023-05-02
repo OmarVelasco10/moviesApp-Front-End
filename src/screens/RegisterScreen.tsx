@@ -1,5 +1,6 @@
-import React, { useContext, useEffect } from 'react'
-import { KeyboardAvoidingView, Platform, Text, TouchableOpacity, View, TextInput, Keyboard, Alert } from 'react-native'
+import React, { useContext, useEffect } from 'react';
+import { KeyboardAvoidingView, Platform, Text, TouchableOpacity, View, TextInput, Keyboard, Alert } from 'react-native';
+
 import { loginStyles } from '../theme/loginTheme';
 import { Background } from '../components/Background';
 import { Logo } from '../components/Logo';

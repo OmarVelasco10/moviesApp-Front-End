@@ -2,6 +2,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import React from 'react';
 import { Image, View, StyleSheet, Dimensions, ScrollView, Text, ActivityIndicator } from 'react-native';
 import Icon  from 'react-native-vector-icons/Ionicons';
+
 import {RootStackParams} from '../navigation/MovieNavigation';
 import { useMovieDetails } from '../hooks/useMovieDetails';
 import { MovieDetails } from '../components/MovieDetails';

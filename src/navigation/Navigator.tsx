@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from '../screens/HomeScreen';
-import { DetailScreen } from '../screens/DetailScreen';
-import { Movie } from '../interfaces/movieInterface';
-import { MovieNavigation } from './MovieNavigation';
+
 import { Tabs } from './Tabs';
 import { AuthNavigation } from './AuthNavigation';
 import { AuthContext } from '../context/authContext/AuthContext';

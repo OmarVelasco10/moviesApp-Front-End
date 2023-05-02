@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import ImageColors from 'react-native-image-colors'
 import Carousel from 'react-native-snap-carousel';
 import {Dimensions, View, ScrollView, ActivityIndicator} from 'react-native';
+
 import {useMovies} from '../hooks/useMovies';
 import {MoviePoster} from '../components/MoviePoster';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';

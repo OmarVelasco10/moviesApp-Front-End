@@ -9,7 +9,7 @@ import { Background } from '../components/Background';
 export const FormScreen = () => {
   const { logOut } = useContext(AuthContext);
   const { addReview } = useContext(ReviewsContext)
-  const { title, description, qualification, onChange, onResetForm } = useForm({
+  const { title, description, qualification, onChange } = useForm({
     title: '',
     description: '',
     qualification: ''

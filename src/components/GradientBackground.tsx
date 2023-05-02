@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
+
 import LinearGradient from 'react-native-linear-gradient';
+
 import { GradientContext } from '../context/GradientContext';
 import { useFade } from '../hooks/useFade';
 

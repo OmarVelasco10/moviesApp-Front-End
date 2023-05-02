@@ -1,6 +1,8 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
+
 import currencyFormatter from 'currency-formatter';
+
 import {MovieFull} from '../interfaces/movieInterface';
 import {Cast} from '../interfaces/creditsInterface';
 import Icon from 'react-native-vector-icons/Ionicons';
